@@ -1,0 +1,6 @@
+Package: (name of package (lower case only no spaces name))
+Version: (version number, e.g.: 1.0,1.1,1.2,etc used for updates to the PKG)
+Maintainer: (your full name or organization's name)
+Architecture: (architecture your package runs on. e.g.: all,amd64,i386)
+Description: (Decription used by apt-cache search (yourpkgname) to display to users)
+Depends: (CSV of dependencies required for your package to run properly. These can be from other repos)
