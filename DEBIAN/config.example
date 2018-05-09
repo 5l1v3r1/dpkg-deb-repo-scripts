@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Thank you for installing ByteForce!"
+bash --login -c "mkdir -p /pwnt/forensics/ByteForce/ && touch /pwnt/forensics/ByteForce/config"
+# completed
