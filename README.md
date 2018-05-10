@@ -253,5 +253,46 @@ Unpacking byteforce (1.1) ...
 Setting up byteforce (1.1) ...
 wnl87:~# 
 ```
+# Updating Packages
+In this section I will cover howe to push updated packages to your production DEBIAN package repository.
+
+If you make chnages to an application, you need to update the ```Version``` string in the DEBIAN/control file. Once done, creat ethe deb file using
+```
+dpkg-deb --build ByteForce/ byteforce.deb
+```
+Just as we did in the previous section. Remembner to note you path and working directory. Then, put the DEB file into your repository and run the ```reprepro``` command as we did the previous section. Afterwards, if you try to do an ```apt-get install byteforce``` you will see that there is no update until you run ```apt-get update```.
+example:
+```
+wnl87:/pwnt/forensics# apt-get install byteforce
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+byteforce is already the newest version.
+0 upgraded, 0 newly installed, 0 to remove and 1 not upgraded.
+wnl87:/pwnt/forensics# apt-get update
+Ign http://weaknetlabs.com caffeine/main Translation-en_US
+Ign http://weaknetlabs.com caffeine/main Translation-en
+Fetched 30.2 kB in 2s (13.0 kB/s)
+Reading package lists... Done
+wnl87:/pwnt/forensics# apt-get install byteforce
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages will be upgraded:
+  byteforce
+1 upgraded, 0 newly installed, 0 to remove and 1 not upgraded.
+Need to get 96.9 kB of archives.
+After this operation, 0 B of additional disk space will be used.
+Get:1 http://weaknetlabs.com/repos/apt/wnl/ caffeine/main byteforce all 1.4.0 [96.9 kB]
+Fetched 96.9 kB in 0s (218 kB/s)
+Reading changelogs... Done
+(Reading database ... 166883 files and directories currently installed.)
+Preparing to unpack .../byteforce_1.4.0_all.deb ...
+This script ran BEFORE installation
+Unpacking byteforce (1.4.0) over (1.2) ...
+Setting up byteforce (1.4.0) ...
+This ran AFTER installation
+wnl87:/pwnt/forensics# 
+```
 # Summary
 This should be enough to get us up and running with a simple private Debain APT/DEB package repository.
