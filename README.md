@@ -5,6 +5,43 @@ This repository will hold the documentatation to help anyone interested in devel
 
 If you are interested in developing your own distribution (ISO) based off of DEBIAN and came up short of good documentation, please check my custom DEBIAN ISO Scripts repository for more information.
 
+# Setup and Architecture of the Repository
+I have created the directory, ```/web/weaknetlabs.com/repos/``` to host all of the repository stuff for WeakNet LINUX distributions.
+
+Then I created a GPG key to sign all of my packages with to verify the identity and integrity of them by my users. This process will create a public and private key for us. We will only use the public key from this point fwd.
+```
+trevelyn@weaknetlabs:~$ gpg --gen-key
+```
+I did this with the user/UID that will be handling all of the packages development.
+
+Next, I create a file ```/etc/apache2/conf.d/repos``` with the following contents. (You will have to update it to your own personal workspace)
+```
+<Directory /var/www/weaknetlabs.com/repos/ >
+        # We want the user to be able to browse the directory manually
+        Options Indexes FollowSymLinks Multiviews
+        Order allow,deny
+        Allow from all
+</Directory>
+
+# This syntax supports several repositories, e.g. one for Debian, one for Ubuntu.
+# Replace * with debian, if you intend to support one distribution only.
+<Directory "/var/www/weaknetlabs.com/repos/apt/*/db/">
+        Order deny,allow
+        Deny from all
+</Directory>
+
+<Directory "/var/www/weaknetlabs.com/repos/apt/*/conf/">
+        Order deny,allow
+        Deny from all
+</Directory>
+
+<Directory "/var/www/weaknetlabs.com/repos/apt/*/incoming/">
+        Order allow,deny
+        Deny from all
+</Directory>
+```
+(to be continued)
+
 # DEB Files
 This section will break down all files and what they require for building your packages for DEBIAN repositories.
 
