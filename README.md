@@ -105,7 +105,23 @@ WORKSPACE
              |->ByteForce
                  |->ByteForce
 ```
-This way when the installation begins, the directory ```/pwnt/forensics/ByteForce``` will contain the ByteForce executable. This is just my preference as WeakNet LINUX contains all pentesting tools in ```/pwnt```
+This way when the installation begins, the directory ```/pwnt/forensics/ByteForce``` will contain the ByteForce executable. This is just my preference as WeakNet LINUX contains all pentesting tools in ```/pwnt``` This means that for me to call the ByteForce application, I will need to be in the ```/pwnt/forensics/ByteForce``` directory. Here is an eampls of the ```/pwn``` diretory as of WeakNety LINUX version 8.7:
+
+```
+wnl87:/pwnt# ls
+80211              fuzzing                 redteam
+80215              ids-ips                 reverse-engineering
+active-directory   intelligence-gathering  social-engineering
+audit-reporting    mitm                    toolbox
+av                 networking              tor
+av-bypass          OSINT                   versioning
+databases          passwords               windows
+denial-of-service  pentest-resources       wireless
+exploitation       post-exploitation       www
+forensics          privacy
+wnl87:/pwnt# 
+
+```
 
 Next, we need to make a new directory that we will build a package in. E.g.: the "ByteForce" and "WARRCARRIER" directories listed above. I am going to do so using a git clone command, but you don't have to.
 
