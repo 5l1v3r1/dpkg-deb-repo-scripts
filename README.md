@@ -118,3 +118,41 @@ After this operation, 33.8 kB of additional disk space will be used.
 Do you want to continue? [Y/n]
 ```
 We see "and one not upgraded" because I actually threw in there libpcap-dev which was already installed.
+
+# Apt-Get Test
+We need to add our gpg key from our server to the machine(s) that we want to install our software on to. 
+```
+root@wt87:~# wget -O - https://weaknetlabs.com/repos/apt/wnl/wnlrepo.gpg.key|apt-key add -
+```
+Add the repository to the /etc/apt/sources.list file,
+```
+# WeakNet LABS DEBIAN Repo
+deb http://weaknetlabs.com/repos/apt/wnl caffeine main
+```
+Then update the database to include our cache and install the package using `apt-get`.
+```
+wnl87:~# apt-get update
+Ign http://weaknetlabs.com caffeine/main Translation-en_US        
+Ign http://weaknetlabs.com caffeine/main Translation-en
+Fetched 498 kB in 3s (142 kB/s)
+Reading package lists... Done
+wnl87:~# apt-cache search byteforce
+byteforce - Offline Digital Forensics Tool / Malware Analysis
+wnl87:~# apt-get install byteforce -y
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following NEW packages will be installed:
+  byteforce
+0 upgraded, 1 newly installed, 0 to remove and 1 not upgraded.
+Need to get 0 B/96.8 kB of archives.
+After this operation, 0 B of additional disk space will be used.
+Selecting previously unselected package byteforce.
+(Reading database ... 166697 files and directories currently installed.)
+Preparing to unpack .../archives/byteforce_1.1_all.deb ...
+Unpacking byteforce (1.1) ...
+Setting up byteforce (1.1) ...
+wnl87:~# 
+```
+# Summary
+This should be enough to get us up and running with a simple private Debain APT/DEB package repository.
