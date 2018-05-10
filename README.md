@@ -105,7 +105,7 @@ WORKSPACE
              |->ByteForce
                  |->ByteForce
 ```
-This way when the installation begins, the directory ```/pwnt/forensics/ByteForce``` will contain the ByteForce executable. This is just my preference as WeakNet LINUX contains all pentesting tools in ```/pwnt``` This means that for me to call the ByteForce application, I will need to be in the ```/pwnt/forensics/ByteForce``` directory. Here is an eampls of the ```/pwn``` diretory as of WeakNety LINUX version 8.7:
+This way, when the installation begins, the directory ```/pwnt/forensics/ByteForce``` will contain the ByteForce executable. This is just my preference as WeakNet LINUX contains all pentesting tools in ```/pwnt``` This means that for me to call the ByteForce application, I will need to be in the ```/pwnt/forensics/ByteForce``` directory. Here is an example of the ```/pwnt``` diretory as of WeakNet LINUX version 8.7:
 
 ```
 wnl87:/pwnt# ls
