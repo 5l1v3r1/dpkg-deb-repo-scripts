@@ -93,7 +93,12 @@ wnl87:/pwnt/forensics#
 And we have our byteforce.deb file. Next, we need to add it to our repository using Reprepro.
 # Reprepro
 This section will describe how to add the package to a private repository.
-
+## Add the .deb Package to the Repository
+To add the debian package, or update one, we simply use the following command,
+```
+reprepro -P 0 -V -S forensics -C main includedeb caffeine byteforce.deb
+```
+Easy, huh? 
 ## Check for Package Using "apt-cache search"
 Example outut from ByteForce in the WeakNet Labs code repository:
 ```
