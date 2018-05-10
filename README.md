@@ -96,7 +96,21 @@ This section will describe how to add the package to a private repository.
 ## Add the .deb Package to the Repository
 To add the debian package, or update one, we simply use the following command,
 ```
-reprepro -P 0 -V -S forensics -C main includedeb caffeine byteforce.deb
+trevelyn@weaknetlabs:/web/weaknetlabs.com/repos/apt/wnl$ reprepro -P 0 -V -S forensics -C main includedeb caffeine byteforce.deb
+Exporting indices...
+ looking for changes in 'caffeine|main|i386'...
+  replacing '/var/www/weaknetlabs.com/repos/apt/wnl/dists/caffeine/main/binary-i386/Packages' (uncompressed,gzipped)
+ looking for changes in 'caffeine|main|amd64'...
+  replacing '/var/www/weaknetlabs.com/repos/apt/wnl/dists/caffeine/main/binary-amd64/Packages' (uncompressed,gzipped)
+* Douglas Berdeaux <WeakNetLabs@Gmail.com> needs a passphrase
+Please enter passphrase:
+Successfully created '/var/www/weaknetlabs.com/repos/apt/wnl/dists/caffeine/Release.gpg.new'
+* Douglas Berdeaux <WeakNetLabs@Gmail.com> needs a passphrase
+Please enter passphrase:
+Successfully created '/var/www/weaknetlabs.com/repos/apt/wnl/dists/caffeine/InRelease.new'
+Deleting files no longer referenced...
+deleting and forgetting pool/main/b/byteforce/byteforce_1.1_all.deb
+trevelyn@weaknetlabs:/web/weaknetlabs.com/repos/apt/wnl$
 ```
 Easy, huh? 
 ## Check for Package Using "apt-cache search"
