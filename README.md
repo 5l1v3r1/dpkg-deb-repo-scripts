@@ -7,13 +7,13 @@ If you are interested in developing your own distribution (ISO) based off of DEB
 
 # Setup and Architecture of the Repository
 I have created the directory, ```/web/weaknetlabs.com/repos/``` to host all of the repository stuff for WeakNet LINUX distributions.
-
+## GnuPG Keys
 Then I created a GPG key to sign all of my packages with to verify the identity and integrity of them by my users. This process will create a public and private key for us. We will only use the public key from this point fwd.
 ```
 trevelyn@weaknetlabs:~$ gpg --gen-key
 ```
 I did this with the user/UID that will be handling all of the packages development.
-
+## Apache Rules (Privacy)
 Next, I create a file ```/etc/apache2/conf.d/repos``` with the following contents. (You will have to update it to your own personal workspace)
 ```
 <Directory /var/www/weaknetlabs.com/repos/ >
@@ -40,8 +40,51 @@ Next, I create a file ```/etc/apache2/conf.d/repos``` with the following content
         Deny from all
 </Directory>
 ```
-(to be continued)
+Run a test to make sure that the Apache2 configuration works and reload it in production.
+```
+trevelyn@weaknetlabs:~$ sudo apache2ctl configtest
+[sudo] password for trevelyn:
+Syntax OK
+trevelyn@weaknetlabs:~$ sudo /etc/init.d/apache2 reload
+[ ok ] Reloading web server config: apache2.
+trevelyn@weaknetlabs:~$
+```
+## Configuration Directory in Repository
+In the /web/weaknetlabs.com/repos/ directory, I created a conf directory like so,
+```
+trevelyn@weaknetlabs:~$ mkdir -p /web/weaknetlabs.com/repos/apt/wnl/conf
+```
+Remember, this is up to you to design and build out. The ```repos``` direcory is just my own personal preference. Next, I made a ```distributions``` file in the newly made conf directory with the contest like so:
+```
+Origin: WeakNet LINUX
+Label: WeakNet LINUX
+Codename: caffeine
+Architectures: i386 amd64
+Components: main
+Description: Apt repository for WeakNet LINUX Packages
+SignWith: <key-id>
+```
+Use the sub key-id (without the preceding length and fwd slash) from the output of the following command,
+```
+trevelyn@weaknetlabs:~$ gpg --list-keys
+/home/trevelyn/.gnupg/pubring.gpg
+---------------------------------
+pub   2048R/EXXXXXXX 2011-05-09
+uid                  Douglas Berdeaux <WeakNetLabs@Gmail.com>
+sub   2048R/DXXXXXXX 2011-05-09
 
+trevelyn@weaknetlabs:~$
+```
+Just use the DXXXXXXX portion of the "sub" public key for the SignWith entry.
+## Options File
+And finally, add an options file in the ewly created ```conf``` directory with the following contents.
+```
+verbose
+basedir /web/weaknetlabs.com/repos/apt/wnl
+ask-passphrase
+
+```
+Update the base directory above to point to your own, obiously.
 # DEB Files
 This section will break down all files and what they require for building your packages for DEBIAN repositories.
 
