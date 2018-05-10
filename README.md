@@ -147,8 +147,15 @@ Maintainer: Douglas Berdeaux <weaknetlabs@gmail.com>
 Description: Offline Digital Forensics Tool / Malware Analysis
 ```
 
-## Config File
-This section describes the shell script that runs post-installation.
+## Preinst Script
+This section describes the shell script that runs pre-installation. This file needs to the correct file permissions set. The file requires a ```chmod +x DEBIAN/preinst```
+
+This script will run *BEFORE* the installation process occurs. These scripts are good for setting up your user's envionment for the application that you are installing.
+
+## Postinst Script
+This section describes the shell script that runs pre-installation. This file needs to the correct file permissions set. The file requires a ```chmod +x DEBIAN/postinst```
+
+This script will run *AFTER* the installation process occurs. These scripts are good for cleaning up your user's envionment after the application installation. 
 
 # Compiling the .DEB Package
 Before continuing, please make sure the directory structure mathes that as in the above section. Now, just fill out the example files and rename them. Compile ByteForce and make the deb package like so.
