@@ -96,7 +96,18 @@ WORKSPACE
  |->WARCARRIER
      |->files for WARCARRIER
 ```
-I will simply be using /pwnt/forensics/ for my examples using WeakNet LINUX. Next, we need to make a new directory that we will build a package in. E.g.: the "ByteForce" and "WARRCARRIER" directories listed above. I am going to do so using a git clone command, but you don't have to.
+I will simply be using /pwnt/forensics/ for my examples using WeakNet LINUX. For this, I will have to create a new directory tree in the WORKSPACE/ByteForce directory as so,
+```
+WORKSPACE
+ |->ByteForce
+     |->pwnt
+         |->forensics
+             |->ByteForce
+                 |->ByteForce
+```
+This way when the installation begins, the directory ```/pwnt/forensics/ByteForce``` will contain the ByteForce executable. This is just my preference as WeakNet LINUX contains all pentesting tools in ```/pwnt```
+
+Next, we need to make a new directory that we will build a package in. E.g.: the "ByteForce" and "WARRCARRIER" directories listed above. I am going to do so using a git clone command, but you don't have to.
 
 ```
 wnl87:/pwnt/forensics# git clone https://github.com/weaknetlabs/ByteForce
